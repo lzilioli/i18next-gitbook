@@ -83,27 +83,28 @@ But you could make this smaller by precompiling the translations. We could bring
 
 Just two samples of extended functionality you can get:
 
-#### a\) Ever liked to **dynamically fallback** your error messages to a general info if no specific message is available?      <a id="a-ever-liked-to-dynamically-fallback-your-error-messages-to-a-general-info-if-no-specific-message-is-available"></a>
+#### a\) You can fallback to a generic string if the one you are looking for is not available      <a id="you-can-fallback-to-a-generic-string-if-the-one-you-are-looking-for-is-not-available"></a>
 
 translation.json
 
-```javascript
-{
-    "error": {
-        "502": "Something went wrong.",
-        "404": "The page was not found."
-    }
-}
+ ```javascript
+ {
+     "error": {
+         "fallback": "An unknown error occurred",
+         "502": "Something went wrong.",
+         "404": "The page was not found."
+     }
+ }
 ```
 
 Sample
 
 ```javascript
-const error = '404';
-i18next.t([`error.${error}`, 'error.unspecific']) // -> "The page was not found"​
-
-const error = '502';
-i18next.t([`error.${error}`, 'error.unspecific']) // -> "Something went wrong"
+const fallback = 'error.fallback';
+let error = 404; // e.g. 404, 502, 500
+i18next.t([`error.${error}`, fallback]) // -> error: 404                    output: "The page was not found"​
+i18next.t([`error.${error}`, fallback]) // -> error: 502                    output: "Something went wrong."
+i18next.t([`error.${error}`, fallback]) // -> error: 500, 403, etc.   output: "An unknown error occurred​"
 ```
 
 #### b\) Or like to say something like **interval plurals**:      <a id="b-or-like-to-say-something-like-interval-plurals"></a>
