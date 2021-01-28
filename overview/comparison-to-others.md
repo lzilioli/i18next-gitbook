@@ -104,7 +104,7 @@ const fallback = 'error.fallback';
 let error = 404; // e.g. 404, 502, 500
 i18next.t([`error.${error}`, fallback]) // -> error: 404                    output: "The page was not found"​
 i18next.t([`error.${error}`, fallback]) // -> error: 502                    output: "Something went wrong."
-i18next.t([`error.${error}`, fallback]) // -> error: 500, 403, etc.   output: "An unknown error occurred​"
+i18next.t([`error.${error}`, fallback]) // -> error: 500, 403, etc.         output: "An unknown error occurred​"
 ```
 
 #### b\) Or like to say something like **interval plurals**:      <a id="b-or-like-to-say-something-like-interval-plurals"></a>
